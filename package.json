@@ -1,0 +1,1 @@
+{"name":"quadratic-buddy-ai","version":"1.0.0","private":true,"description":"Differentiated quadratic equation tutor with AI hints","scripts":{"dev":"netlify dev"},"dependencies":{"@google/generative-ai":"^0.24.1"},"devDependencies":{"netlify-cli":"^22.0.0"}}
