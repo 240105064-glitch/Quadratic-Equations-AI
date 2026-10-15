@@ -111,11 +111,13 @@ Do not change the equation. Use plain text, no markdown tables.`;
     }
 
     const data = await response.json();
-    const text = data.choices?.[0]?.message?.content;
+const message = data.choices?.[0]?.message;
+const text = message?.content || message?.reasoning;
 
-    if (!text) {
-      throw Error('Groq returned an empty response');
-    }
+if (!text) {
+  console.error('Groq response:', JSON.stringify(data));
+  throw Error('Groq returned no text. Check function logs.');
+}
 
     return {
       statusCode: 200,
