@@ -15,5 +15,5 @@ exports.handler = async (event) => {
     const model=ai.getGenerativeModel({model:'gemini-2.5-flash'});
     const result=await model.generateContent(prompt);
     return {statusCode:200,headers:{'Content-Type':'application/json','Cache-Control':'no-store'},body:JSON.stringify({text:result.response.text()})};
-  }catch(e){const bad=/Invalid|Inconsistent|too large/.test(e.message);return {statusCode:bad?400:502,body:JSON.stringify({error:bad?e.message:'AI request failed. Check your API key, model name, and quota.'})};}
+  }catch(e){console.error("Gemini API error:", e);const bad=/Invalid|Inconsistent|too large/.test(e.message);return {statusCode:bad?400:502,body:JSON.stringify({error:bad?e.message:'AI request failed. Check your API key, model name, and quota.'})};}
 };
